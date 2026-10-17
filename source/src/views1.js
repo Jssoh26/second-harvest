@@ -93,7 +93,7 @@ function DropForm({ c, binId, onDone }) {
     ${wt.bsf && html`<div class="field"><span class="label">Segregation check</span>
       <div class="stack" style="gap:6px">${items.map((t, i) => html`<label class="check"><input type="checkbox" checked=${checks[i]} onChange=${e => { const n = checks.slice(); n[i] = e.target.checked; setChecks(n); setScan(null); }}/>${t}</label>`)}</div></div>
     ${scan && html`<${ScanView} state=${scan === 'scanning' ? 'scanning' : 'done'} dirty=${!checks.every(Boolean)} contam=${scan.contam}/>`}
-    <div class="row wrap" style="padding:12px;border-radius:14px;background:var(--surface-2)">
+    <div class="row wrap scanrow" style="padding:12px;border-radius:14px;background:var(--surface-2)">
       <button type="button" class="btn sm" onClick=${doScan} disabled=${scan === 'scanning'}>${Ic.scan()} ${scan === 'scanning' ? 'Scanning…' : 'Scan with bin camera'}</button>
       <div class="grow small">${!scan ? html`<span class="muted">The lid camera checks for plastics before the waste goes in.</span>` : scan === 'scanning' ? html`<span class="muted">Checking for plastics and packaging…</span>` :
         html`<span><b style=${clean ? 'color:var(--good)' : 'color:var(--warn)'}>${clean ? 'Clean' : 'Contaminants spotted'}</b> · ${scan.contam}% non-food detected${!clean ? '. Pick out the packaging to earn the clean bonus.' : ''}</span>`}</div>
